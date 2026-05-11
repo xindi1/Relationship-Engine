@@ -178,7 +178,7 @@ function itemInteraction(i){
   </div>`;
 }
 function exportData(){
-  const blob = new Blob([JSON.stringify({app:"Relationship Engine v1", exportedAt:nowISO(), state}, null, 2)], {type:"application/json"});
+  const blob = new Blob([JSON.stringify({app:"Relationship Engine v1 fixed", exportedAt:nowISO(), state}, null, 2)], {type:"application/json"});
   const a = document.createElement("a");
   a.href = URL.createObjectURL(blob);
   a.download = `relationship-engine-${today()}.json`;
