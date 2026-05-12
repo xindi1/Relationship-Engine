@@ -1,194 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <meta name="theme-color" content="#101827" />
-  <meta name="apple-mobile-web-app-capable" content="yes" />
-  <meta name="apple-mobile-web-app-title" content="Relationship Engine" />
-  <title>Relationship Engine</title>
-  <link rel="manifest" href="manifest.json" />
-  <link rel="apple-touch-icon" href="icons/icon-192.png" />
-  <link rel="stylesheet" href="styles.css" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1b2430">
+<title>Relationship Engine Lite</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="app">
-    <header class="hero">
-      <div>
-        <p class="eyebrow">Human Infrastructure</p>
-        <h1>Relationship Engine</h1>
-        <p class="subtitle">Maintain continuity, take better swings, and convert relationships into trust, support, and opportunity.</p>
-      </div>
-      <button id="themeBtn" class="icon-btn" aria-label="Toggle theme">◐</button>
-    </header>
+<div class="app">
+<header class="hero">
+<div>
+<p class="eyebrow">Communication Pulse Layer</p>
+<h1>Relationship Engine Lite</h1>
+<p class="subtitle">Low-friction communication continuity tracking.</p>
+</div>
+<button id="themeBtn">◐</button>
+</header>
 
-    <nav class="tabs">
-      <button class="tab active" data-tab="dashboard">Today</button>
-      <button class="tab" data-tab="contacts">People</button>
-      <button class="tab" data-tab="log">Log</button>
-      <button class="tab" data-tab="swings">Swings</button>
-      <button class="tab" data-tab="peripheral">Peripheral</button>
-      <button class="tab" data-tab="data">Data</button>
-    </nav>
+<nav class="tabs">
+<button class="tab active" data-tab="today">Today</button>
+<button class="tab" data-tab="continuity">Continuity</button>
+<button class="tab" data-tab="insights">Insights</button>
+</nav>
 
-    <main>
-      <section id="dashboard" class="panel active">
-        <div class="grid-2">
-          <div class="metric card"><span id="weeklyCount">0</span><small>touches this week</small></div>
-          <div class="metric card"><span id="openFollowups">0</span><small>open follow-ups</small></div>
-        </div>
+<section id="today" class="panel active">
+<div class="metrics">
+<div class="metric"><span id="todayCount">0</span><small>today</small></div>
+<div class="metric"><span id="weekCount">0</span><small>7 days</small></div>
+</div>
 
-        <div class="card">
-          <div class="row">
-            <h2>Relationship Queue</h2>
-            <button class="small" id="seedBtn">Load demo</button>
-          </div>
-          <div id="queueList" class="list"></div>
-        </div>
+<div class="card">
+<h2>Quick Log</h2>
+<div class="stack">
+<input id="person" placeholder="Person">
+<select id="mode">
+<option>Text</option>
+<option>Call</option>
+<option>In-person</option>
+<option>Video</option>
+<option>Email</option>
+</select>
 
-        <div class="card">
-          <h2>Quick Swing</h2>
-          <div class="stack">
-            <input id="quickName" placeholder="Person / target" />
-            <select id="quickType">
-              <option>Maintenance</option>
-              <option>Gratitude</option>
-              <option>Reconnection</option>
-              <option>Strategic</option>
-              <option>Opportunity</option>
-              <option>Family</option>
-            </select>
-            <textarea id="quickNote" placeholder="What is the reason for the touch?"></textarea>
-            <button id="quickSwingBtn" class="primary">Log Swing</button>
-          </div>
-        </div>
+<select id="energy">
+<option>Energizing</option>
+<option selected>Neutral</option>
+<option>Mixed</option>
+<option>Draining</option>
+</select>
 
-        <div class="card">
-          <h2>Recent Momentum</h2>
-          <div id="recentList" class="list"></div>
-        </div>
-      </section>
+<label class="toggle">
+<input id="followup" type="checkbox">
+<span>Follow-up needed</span>
+</label>
 
-      <section id="contacts" class="panel">
-        <div class="card">
-          <h2>Add Relationship</h2>
-          <div class="stack">
-            <input id="personName" placeholder="Name" />
-            <select id="personCategory">
-              <option>Family</option>
-              <option>Friend</option>
-              <option>Professional</option>
-              <option>Mentor</option>
-              <option>Opportunity</option>
-              <option>Peripheral</option>
-              <option>Client</option>
-              <option>Romantic</option>
-              <option>Partner</option>
-            </select>
-            <select id="energyImpact">
-              <option>Energizing</option>
-              <option>Neutral</option>
-              <option>Draining</option>
-              <option>Complex</option>
-              <option>Mixed</option>
-            </select>
+<label>Date</label>
+<input id="date" type="date">
 
-            <label class="field-label" for="nextFollowup">Follow-up Date</label>
-            <input id="nextFollowup" class="date-input" type="date" />
+<textarea id="note" placeholder="Optional note"></textarea>
 
-            <textarea id="personContext" placeholder="Important context, shared interests, current life themes"></textarea>
-            <input id="personTags" placeholder="Tags: golf, deal flow, family, app feedback..." />
-            <button id="addPersonBtn" class="primary">Save Person</button>
-          </div>
-        </div>
+<button id="saveBtn" class="primary">Save</button>
+</div>
+</div>
 
-        <div class="card">
-          <div class="row">
-            <h2>People</h2>
-            <input id="peopleSearch" class="search" placeholder="Search" />
-          </div>
-          <div id="peopleList" class="list"></div>
-        </div>
-      </section>
+<div class="card">
+<h2>Recent</h2>
+<div id="recentList"></div>
+</div>
+</section>
 
-      <section id="log" class="panel">
-        <div class="card">
-          <h2>Interaction Debrief</h2>
-          <div class="stack">
-            <input id="logPerson" placeholder="Person" />
-            <select id="interactionType">
-              <option>Text</option>
-              <option>Call</option>
-              <option>In Person</option>
-              <option>Email</option>
-              <option>DM</option>
-              <option>Meeting</option>
-            </select>
-            <div class="two">
-              <select id="moodBefore"><option>Before 1</option><option>Before 2</option><option selected>Before 3</option><option>Before 4</option><option>Before 5</option></select>
-              <select id="moodAfter"><option>After 1</option><option>After 2</option><option selected>After 3</option><option>After 4</option><option>After 5</option></select>
-            </div>
-            <select id="commQuality">
-              <option>Clear</option>
-              <option>Warm</option>
-              <option>Strategic</option>
-              <option>Escalated</option>
-              <option>De-escalated</option>
-              <option>Unclear</option>
-            </select>
-            <textarea id="logNotes" placeholder="Notable moments, opportunities surfaced, emotional tone"></textarea>
-            <label class="checkrow"><input id="followNeeded" type="checkbox" /> Follow-up needed</label>
-            <button id="saveLogBtn" class="primary">Save Interaction</button>
-          </div>
-        </div>
+<section id="continuity" class="panel">
+<div class="card">
+<h2>Continuity</h2>
+<div id="continuityList"></div>
+</div>
+</section>
 
-        <div class="card">
-          <h2>Timeline</h2>
-          <div id="timelineList" class="list"></div>
-        </div>
-      </section>
+<section id="insights" class="panel">
+<div class="metrics">
+<div class="metric"><span id="energizingCount">0</span><small>energizing</small></div>
+<div class="metric"><span id="drainingCount">0</span><small>draining</small></div>
+</div>
 
-      <section id="swings" class="panel">
-        <div class="card">
-          <p class="kicker">Behavioral mechanics</p>
-          <h2>Swings Mode</h2>
-          <p class="muted">Track intentional touches: warm, cold, maintenance, gratitude, reconnection, and strategic asks.</p>
-        </div>
-        <div id="swingStats" class="grid-2"></div>
-        <div class="card">
-          <h2>Open Follow-Ups</h2>
-          <div id="followupList" class="list"></div>
-        </div>
-      </section>
+<div class="card">
+<h2>Mode Distribution</h2>
+<div id="modeList"></div>
+</div>
+</section>
 
-      <section id="peripheral" class="panel">
-        <div class="card">
-          <p class="kicker">Asymmetric upside</p>
-          <h2>Peripheral Network</h2>
-          <p class="muted">Weak ties, dormant contacts, and edge-of-network people often create unexpected opportunity.</p>
-        </div>
-        <div id="peripheralList" class="list"></div>
-      </section>
-
-      <section id="data" class="panel">
-        <div class="card">
-          <h2>Import / Export</h2>
-          <p class="muted">Data saves locally on this device. Export often if you are testing heavily.</p>
-          <div class="button-grid">
-            <button id="exportBtn" class="primary">Export JSON</button>
-            <label for="importFile" class="ghost file-label">Import JSON</label>
-            <input id="importFile" type="file" accept="application/json" hidden />
-            <button id="resetBtn" class="danger">Reset</button>
-          </div>
-        </div>
-        <div class="card">
-          <h2>Operating Principle</h2>
-          <blockquote>Relationships are infrastructure. Communication is trainable. Momentum compounds.</blockquote>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <script src="app.js"></script>
+<script src="app.js"></script>
 </body>
 </html>
